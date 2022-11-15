@@ -1,0 +1,40 @@
+<div class="bg-primary p-2 text-white" [class.bg-warning]="editing"
+ [class.text-dark]="editing">
+ <h5>{{editing ? "Edit" : "Create"}} Products</h5>
+</div>
+<form class="mt-4" novalidate #form="ngForm" (submit)="saveProduct(form)">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" placeholder="Enter the name of Product" class="form-control" required
+     name="name" [(ngModel)]="product.name">
+  </div>
+
+  <div class="form-group">
+    <label for="name">Category</label>
+    <select class="form-control" [(ngModel)]="product.category" name="category">
+      <option value="chess">Chess</option>
+      <option value="Watersports">Watersports</option>
+      <option value="others">Others</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="name">Description</label>
+    <textarea type="text" class="form-control" required
+     name="description" [(ngModel)]="product.description">
+    </textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="name">Price</label>
+    <input type="text" placeholder="Enter the price" class="form-control" required
+     name="price" [(ngModel)]="product.price">
+  </div>
+
+  <div class="text-center m-2">
+  <button class="btn btn-primary mr-2" type="submit"
+  [class.btn-warning]="editing">
+    {{editing ? "Save" : "Create"}}</button>
+  <button class="btn btn-secondary mr-2" type="reset" routerLink="/admin/main/products">Cancel</button>
+</div>
+</form>

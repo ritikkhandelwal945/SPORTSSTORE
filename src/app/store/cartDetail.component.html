@@ -1,0 +1,72 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col bg-dark text-white">
+      <a class="navbar-brand">
+        SPORTS STORE
+      </a>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col mt-2">
+      <h2 class="text-center">Your Cart</h2>
+      <table class="table table-bordered table-striped p-2">
+        <thead>
+        <tr>
+          <th>Quantity</th>
+          <th>Product</th>
+          <th>Price</th>
+          <th>Subtotal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngIf="cart.totalproducts.length == 0">
+          <td colspan="4" class="text-center">Your Cart is Empty</td>
+        </tr>
+        <tr *ngFor="let prod of cart.totalproducts">
+          <td>
+            <input type="number" class="form-control-sm"
+                   style="width:5em"
+                   [value]="prod.quantity" min="1" max="10"
+                   (change)="cart.updateQuantity(prod.product,
+                              $event.target.value)" />
+          </td>
+        <td>
+          {{prod.product.name}}
+        </td>
+        <td>
+          {{prod.product.price | currency : "INR" :"symbol":"2.2-2"}}
+        </td>
+        <td>
+          {{prod.lineTotal | currency : "INR" :"symbol":"2.2-2"}}
+        </td>
+        <td class="text-center">
+          <button class="btn btn-danger" (click)="cart.removeProduct(prod.product.id)">Remove</button>
+        </td>
+      </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td>Total Quantity</td>
+          <td>{{cart.itemQuantity}}</td>
+          <td>Total Price</td>
+          <td>{{cart.price}}</td>
+        </tr>
+      </tfoot>
+      </table>
+
+      <div class="row">
+        <div class="col">
+        <div class="text-center">
+        <button class="btn btn-primary m-1" routerLink="/store">
+          Continue Shopping
+        </button>
+        <button class="btn btn-primary m-1" [disabled]="cart.totalproducts.length == 0" routerLink="/checkout">
+          Checkout
+        </button>
+      </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>

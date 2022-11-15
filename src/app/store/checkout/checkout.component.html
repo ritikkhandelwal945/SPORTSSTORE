@@ -1,0 +1,83 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col bg-dark text-whilte">
+      <a class="navbar-brand">SPORTS STORE</a>
+    </div>
+  </div>
+
+  <div *ngIf="orderSent" class="text-center m-2">
+    <h2>Thanks!</h2>
+    <p>Thanks for placing your order.</p>
+    <p>We'll ship your goods as soon as possible.</p>
+    <button class="btn btn-primary" routerLink="store">
+      Return to Store
+    </button>
+  </div>
+
+  <form *ngIf="!orderSent" #form="ngForm" (ngSubmit)="submitOrder(form)" class="m-2">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="name" placeholder="Name" class="form-control" #name="ngModel" name="name"
+      [(ngModel)]="order.Name" required>
+      <span *ngIf="name.touched || submitted" class="text-danger">
+        <span *ngIf="name.invalid">Please enter Name</span>
+      </span>
+    </div>
+
+    <!-- <div class="form-group">
+      <label for="phone">Phone No</label>
+      <input type="number" class="form-control" #phone="ngModel" [(ngModel)]="order.PhoneNo"
+      name="address" required min="10">
+      <span *ngIf="name.touched || submitted" class="text-danger">
+        <span *ngIf="name.invalid">Please enter valid Phone No</span>
+      </span>
+    </div> -->
+
+    <div class="form-group">
+      <label for="address">Address</label>
+      <input type="address" #address="ngModel" [(ngModel)]="order.Address" class="form-control"
+      name="address" required>
+      <span *ngIf="address.touched || submitted" class="text-danger">
+        <span *ngIf="address.invalid">Please enter address</span>
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label for="city">City</label>
+      <input type="city" #city="ngModel" [(ngModel)]="order.City" class="form-control" name="city" required>
+      <span *ngIf="city.touched || submitted" class="text-danger">
+        <span *ngIf="city.invalid">Please enter city</span>
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label for="state">State</label>
+      <input type="state" #state="ngModel" [(ngModel)]="order.State" class="form-control" name="state" required>
+      <span *ngIf="state.touched || submitted" class="text-danger">
+        <span *ngIf="state.invalid">Please enter state</span>
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label for="pin">PinCode</label>
+      <input type="pin" #pincode="ngModel" [(ngModel)]="order.PinCode" class="form-control" name="pin"
+      required>
+      <span *ngIf="pincode.touched || submitted" class="text-danger">
+        <span *ngIf="pincode.invalid">Please enter Pincode</span>
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label for="country">Country</label>
+      <input type="country" #country="ngModel" [(ngModel)]="order.Country" class="form-control"
+      name="country" required>
+      <span *ngIf="country.touched || submitted" class="text-danger">
+        <span *ngIf="country.invalid">Please enter country</span>
+      </span>
+    </div>
+  <div class="text-center">
+  <button type="submit" class="btn btn-success m-1">Submit</button>
+  <button routerLink="/cart" class="btn btn-primary m-1">Go Back</button>
+</div>
+  </form>
+</div>
